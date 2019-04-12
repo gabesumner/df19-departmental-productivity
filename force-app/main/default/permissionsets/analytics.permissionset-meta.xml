@@ -2,6 +2,11 @@
 <PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
     <fieldPermissions>
         <editable>false</editable>
+        <field>Vehicle__c.Account__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Vehicle__c.Autopilot__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -13,6 +18,11 @@
     <fieldPermissions>
         <editable>false</editable>
         <field>Vehicle__c.Billing_Status__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vehicle__c.Cancellation_Risk__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -72,6 +82,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
+        <field>Vehicle__c.Prediction_Sample__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
         <field>Vehicle__c.Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -79,6 +94,11 @@
         <editable>false</editable>
         <field>Vehicle__c.Rear_Seats__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Vehicle__c.Risk_Score__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>false</editable>
