@@ -30,7 +30,7 @@ cd solutions-departmental-apps
 sh orgInit.sh
 ```
 
-3. Create and activate an Einstein Prediction to predict the "Cancellation Risk" score from the Cancelled checkbox ([see video](https://drive.google.com/open?id=1SCfkYPVv2mYP9ynz1BOak1yaUc78NTXH)).
+3. Create and activate an Einstein Prediction to predict the "Cancellation Risk" score ([see video](https://drive.google.com/open?id=1SCfkYPVv2mYP9ynz1BOak1yaUc78NTXH)).
     - Prediction Name: Predict Cancellations
     - Object: Vehicle__c
     - Segment: Status = Purchase
