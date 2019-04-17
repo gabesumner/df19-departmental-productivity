@@ -1,1 +1,0 @@
-sfdx force:data:bulk:upsert -s Contact -f ./data/Contacts.csv -i Id

@@ -30,6 +30,8 @@ cd solutions-departmental-apps
 sh orgInit.sh
 ```
 
+3. In **Setup**, activate the **Electron Motors Theme**.
+
 3. Create and activate an Einstein Prediction to predict the "Cancellation Risk" score ([see video](https://drive.google.com/open?id=1SCfkYPVv2mYP9ynz1BOak1yaUc78NTXH)).
     - Prediction Name: Predict Cancellations
     - Object: Vehicle__c
@@ -41,9 +43,9 @@ sh orgInit.sh
 
 4. Add the "Cancellation Risk" field to the Vehicle Page Layout.
 
-5. Assign the "analytics" Permission Set to the "Integration User".
+5. Click App Launcher, click Analytics Studio, click Data Manager then run the "Default Salesforce Dataflow".
 
-6. Click App Launcher, click Analytics Studio, click Data Manager then run the "Default Salesforce Dataflow".
+6. In **Setup**, go to **Lightning App Builder**, edit and activate **Home Page Default** for the entire org.
 
 7. Reorder the App Launcher icons to match the delivery pipline:
     - Marketing

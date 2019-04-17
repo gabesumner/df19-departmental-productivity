@@ -14,5 +14,3 @@ node_modules/
 selenium-client-jars/
 test/artifacts/
 yarn.lock
-electron-base
-electron-theme

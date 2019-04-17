@@ -125,7 +125,7 @@
             </value>
         </assignmentItems>
         <connector>
-            <targetReference>showPrice</targetReference>
+            <targetReference>Return_Price</targetReference>
         </connector>
     </assignments>
     <assignments>
@@ -191,6 +191,19 @@
         <connector>
             <targetReference>ifSpoiler</targetReference>
         </connector>
+    </assignments>
+    <assignments>
+        <name>Return_Price</name>
+        <label>Return Price</label>
+        <locationX>1273</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>price</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>price</elementReference>
+            </value>
+        </assignmentItems>
     </assignments>
     <decisions>
         <name>checkBattery</name>
@@ -365,7 +378,7 @@
                 </rightValue>
             </conditions>
             <connector>
-                <targetReference>showPrice</targetReference>
+                <targetReference>Return_Price</targetReference>
             </connector>
             <label>No</label>
         </rules>
@@ -520,6 +533,12 @@
     </decisions>
     <interviewLabel>Price Quote {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Price Quote</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
     <processType>Flow</processType>
     <recordLookups>
         <name>getVehicle</name>
@@ -549,22 +568,6 @@
         <queriedFields>Rear_Seats__c</queriedFields>
         <queriedFields>Hydraulic_System__c</queriedFields>
     </recordLookups>
-    <screens>
-        <name>showPrice</name>
-        <label>Show Price</label>
-        <locationX>1343</locationX>
-        <locationY>668</locationY>
-        <allowBack>false</allowBack>
-        <allowFinish>true</allowFinish>
-        <allowPause>false</allowPause>
-        <fields>
-            <name>outputPrice</name>
-            <fieldText>{!price}</fieldText>
-            <fieldType>DisplayText</fieldType>
-        </fields>
-        <showFooter>false</showFooter>
-        <showHeader>true</showHeader>
-    </screens>
     <startElementReference>getVehicle</startElementReference>
     <status>Active</status>
     <variables>
