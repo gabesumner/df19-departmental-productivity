@@ -1,1 +1,1 @@
-DemoController.generateAccounts();
+GenerateData.GenerateAccounts(500);

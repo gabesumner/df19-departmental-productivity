@@ -1,0 +1,1 @@
+sfdx force:data:soql:query -q "SELECT Id, Name, Phone, Type FROM Account" -r csv > ./data/Accounts.csv

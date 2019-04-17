@@ -13,3 +13,6 @@ do
 sfdx force:apex:execute -f scripts/generateAccounts.apex
 sleep 5
 done;
+
+
+sfdx force:apex:execute -f scripts/generateContacts.apex

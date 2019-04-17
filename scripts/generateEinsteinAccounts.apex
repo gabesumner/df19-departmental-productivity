@@ -1,1 +1,0 @@
-DemoController.generateEinsteinAccounts();

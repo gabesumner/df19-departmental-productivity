@@ -1,0 +1,32 @@
+{
+    "name": "solutions-departmental-apps",
+    "version": "0.0.1",
+    "description": "",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "publish": "sfdx shane:package2:version:bump -m -c -r",
+        "build": "sfdx shane:org:delete; sh orgInit.sh",
+        "reset": "echo \"sfdx force:apex:execute -f scripts/dataWipe.cls && sfdx force:apex:execute -f scripts/init.cls\""
+    },
+    "nodemonConfig": {
+        "watch": [
+            "force-app"
+        ],
+        "exec": "sfdx force:source:push",
+        "ext": "cls,xml,json,js,trigger,cmp,css,design,svg,html",
+        "delay": "2500"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/gabesumner/solutions-departmental-apps/solutions-departmental-apps.git"
+    },
+    "author": "Gabe Sumner",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/gabesumner/solutions-departmental-apps/issues"
+    },
+    "homepage": "https://github.com/gabesumner/solutions-departmental-apps",
+    "devDependencies": {
+        "nodemon": "^1.18.3"
+    }
+}

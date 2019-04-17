@@ -16,4 +16,3 @@ test/artifacts/
 yarn.lock
 electron-base
 electron-theme
-force-app/main/default/objects
