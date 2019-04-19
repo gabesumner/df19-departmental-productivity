@@ -2,7 +2,6 @@
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Web_ID__c</fullName>
     <caseSensitive>false</caseSensitive>
-    <deprecated>false</deprecated>
     <externalId>true</externalId>
     <label>Web ID</label>
     <length>50</length>
