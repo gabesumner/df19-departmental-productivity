@@ -10,12 +10,6 @@ This webinar demo will help customers understand what the Salesforce Platform ca
 npm install sfdx-cli --global
 ```
 
-2. Install the Shane-SFDX-Plugin
-
-```
-sfdx plugins:install shane-sfdx-plugins
-```
-
 ## Installation Instructions
 
 1. Clone this repository:
