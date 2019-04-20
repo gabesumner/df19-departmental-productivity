@@ -66,6 +66,7 @@ public with sharing class GenerateData {
         account.Name = name;
         account.Type = 'Customer';
         account.Phone = '(555) ' + String.valueOf(randomInt(111, 999)) + '-' + String.valueOf(randomInt(1111, 9999));
+        account.Username__c = name.toLowerCase().replaceAll(' ', '.');
         account = GetRandomAddress(account);
         return account;
     }
