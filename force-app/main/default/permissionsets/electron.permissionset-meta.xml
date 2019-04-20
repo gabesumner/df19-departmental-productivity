@@ -35,6 +35,11 @@
     <description>Permissions for the Electron Motors demo</description>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Account.Username__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Inspection__c.Customer__c</field>
         <readable>true</readable>
     </fieldPermissions>
