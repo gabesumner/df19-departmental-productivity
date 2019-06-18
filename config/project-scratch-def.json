@@ -1,4 +1,12 @@
 {
     "orgName": "solutions-departmental-apps",
-    "sourceOrg": "00Df4000003AHjV"
+    "adminEmail": "shane@mailinator.com",
+    "edition": "Developer",
+    "features": ["EinsteinBuilder", "DevelopmentWave"],
+    "settings": {
+        "orgPreferenceSettings": {
+            "s1DesktopEnabled": true,
+            "s1EncryptedStoragePref2": false
+        }
+    }
 }
