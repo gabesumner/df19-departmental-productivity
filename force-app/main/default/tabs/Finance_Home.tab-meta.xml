@@ -3,6 +3,5 @@
     <description>Created by Lightning App Builder</description>
     <flexiPage>Finance_Home</flexiPage>
     <label>Finance Home</label>
-    <mobileReady>true</mobileReady>
     <motif>Custom16: Bank</motif>
 </CustomTab>
