@@ -31,14 +31,7 @@
                 <value>true</value>
             </componentInstanceProperties>
             <componentName>wave:waveDashboard</componentName>
-        </componentInstances>
-        <componentInstances>
-            <componentInstanceProperties>
-                <name>flavor</name>
-                <value>list</value>
-            </componentInstanceProperties>
-            <componentName>home:newsPanel</componentName>
-        </componentInstances>
+        </componentInstances>        
         <mode>Replace</mode>
         <name>top</name>
         <type>Region</type>
