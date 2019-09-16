@@ -92,6 +92,7 @@ public with sharing class GenerateData {
         contact.OtherPostalCode = account.BillingPostalCode;
         contact.OtherCountry = account.BillingCountry;
         contact.Birthdate = GetRandomBirthDate();
+        contact.Username__c = account.Username__c;
         return contact;
     }
 

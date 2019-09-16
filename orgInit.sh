@@ -4,13 +4,6 @@ sfdx force:source:push
 sfdx force:user:permset:assign -n electron
 sfdx shane:user:permset:assign -n analytics -g Integration -l User
 
-sfdx force:apex:execute -f scripts/generatePredictionAccounts.apex
-sfdx force:apex:execute -f scripts/generatePredictionAccounts.apex
-sfdx force:apex:execute -f scripts/generatePredictionAccounts.apex
-sfdx force:apex:execute -f scripts/generatePredictionAccounts.apex
-sfdx force:apex:execute -f scripts/generatePredictionAccounts.apex
-sfdx force:apex:execute -f scripts/generateAccounts.apex
-
 sfdx force:source:deploy -p dataflow
 sfdx shane:analytics:dataflow:start -n Electron
 

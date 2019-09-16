@@ -12,6 +12,7 @@
                     <lightning:button label="Generate 1 Account with Activity" iconName="utility:adduser" onclick="{!c.createAccount}" />
                     <lightning:button label="Generate 10 Accounts with Activity" iconName="utility:adduser" onclick="{!c.createAccounts10}" />
                     <lightning:button label="Generate 100 Accounts with Activity" iconName="utility:adduser" onclick="{!c.createAccounts100}" />
+                    <lightning:button label="Generate 1000 Prediction Accounts" iconName="utility:adduser" onclick="{!c.createPredictionAccount}" />
                 </div>
             </div>
         </lightning:card>
