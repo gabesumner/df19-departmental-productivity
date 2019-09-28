@@ -2,7 +2,7 @@
     "orgName": "solutions-departmental-apps",
     "adminEmail": "shane@mailinator.com",
     "edition": "Developer",
-    "features": ["EinsteinBuilder", "DevelopmentWave"],
+    "features": ["EinsteinBuilderFree", "DevelopmentWave"],
     "settings": {
         "orgPreferenceSettings": {
             "s1DesktopEnabled": true,
