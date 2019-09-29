@@ -2,11 +2,16 @@
     "orgName": "solutions-departmental-apps",
     "adminEmail": "shane@mailinator.com",
     "edition": "Developer",
-    "features": ["EinsteinBuilderFree", "DevelopmentWave"],
+    "features": ["EinsteinBuilderFree", "DevelopmentWave", "EinsteinAssistant"],
     "settings": {
         "orgPreferenceSettings": {
+            "networksEnabled": false,
             "s1DesktopEnabled": true,
-            "s1EncryptedStoragePref2": false
+            "pathAssistantsEnabled": true,
+            "s1EncryptedStoragePref2": false      
         }
-    }
+    },
+    "mobileSettings": {
+        "enableLightningOnMobile": true
+    }    
 }
