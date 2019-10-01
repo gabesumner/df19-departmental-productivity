@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Flow xmlns="http://soap.sforce.com/2006/04/metadata" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
     <decisions>
         <name>checkPaymentType</name>
         <label>Check payment type</label>
         <locationX>410</locationX>
-        <locationY>206</locationY>
+        <locationY>398</locationY>
         <defaultConnectorLabel>[Default Outcome]</defaultConnectorLabel>
         <rules>
             <name>isCash</name>
@@ -36,6 +35,43 @@
                 <targetReference>showLoanCalculator</targetReference>
             </connector>
             <label>Loan</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>checkStatus</name>
+        <label>Check Status</label>
+        <locationX>411</locationX>
+        <locationY>54</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>isEvaluation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vehicle.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Evaluation</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Price</targetReference>
+            </connector>
+            <label>Is Evaluation</label>
+        </rules>
+        <rules>
+            <name>isntEvaluation</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>vehicle.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Evaluation</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>orderScreen</targetReference>
+            </connector>
+            <label>Isn&#39;t Evaluation</label>
         </rules>
     </decisions>
     <dynamicChoiceSets>
@@ -94,9 +130,9 @@
         <name>createInvoice</name>
         <label>Create invoice</label>
         <locationX>646</locationX>
-        <locationY>319</locationY>
+        <locationY>511</locationY>
         <connector>
-            <targetReference>screenCashSuccess</targetReference>
+            <targetReference>updateVehicleCash</targetReference>
         </connector>
         <inputAssignments>
             <field>Customer__c</field>
@@ -119,7 +155,7 @@
         <name>createLoan</name>
         <label>Create loan</label>
         <locationX>60</locationX>
-        <locationY>470</locationY>
+        <locationY>662</locationY>
         <assignRecordIdToReference>loanId</assignRecordIdToReference>
         <connector>
             <targetReference>updateVehicle</targetReference>
@@ -190,10 +226,10 @@
         <name>getVehicle</name>
         <label>Get vehicle</label>
         <locationX>250</locationX>
-        <locationY>50</locationY>
+        <locationY>242</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
-            <targetReference>Get_Price</targetReference>
+            <targetReference>checkStatus</targetReference>
         </connector>
         <filters>
             <field>Id</field>
@@ -203,24 +239,18 @@
             </value>
         </filters>
         <object>Vehicle__c</object>
-        <outputAssignments>
-            <assignToReference>vehicle.Name</assignToReference>
-            <field>Name</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>vehicle.Owner__c</assignToReference>
-            <field>Owner__c</field>
-        </outputAssignments>
-        <outputAssignments>
-            <assignToReference>vehicle.Price__c</assignToReference>
-            <field>Price__c</field>
-        </outputAssignments>
+        <outputReference>vehicle</outputReference>
+        <queriedFields>Id</queriedFields>
+        <queriedFields>Owner__c</queriedFields>
+        <queriedFields>Name</queriedFields>
+        <queriedFields>Price__c</queriedFields>
+        <queriedFields>Status__c</queriedFields>
     </recordLookups>
     <recordUpdates>
         <name>updateVehicle</name>
         <label>Update vehicle</label>
         <locationX>60</locationX>
-        <locationY>630</locationY>
+        <locationY>822</locationY>
         <connector>
             <targetReference>showLoanSuccess</targetReference>
         </connector>
@@ -263,11 +293,68 @@
         </inputAssignments>
         <object>Vehicle__c</object>
     </recordUpdates>
+    <recordUpdates>
+        <name>updateVehicleCash</name>
+        <label>Update vehicle</label>
+        <locationX>646</locationX>
+        <locationY>657</locationY>
+        <connector>
+            <targetReference>screenCashSuccess</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Billing_Status__c</field>
+            <value>
+                <stringValue>Issued</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Payment_Type__c</field>
+            <value>
+                <stringValue>Cash</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Price__c</field>
+            <value>
+                <elementReference>numberPrice</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status__c</field>
+            <value>
+                <stringValue>Purchase</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Vehicle__c</object>
+    </recordUpdates>
+    <screens>
+        <name>orderScreen</name>
+        <label>Order Complete</label>
+        <locationX>657</locationX>
+        <locationY>50</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>orderText</name>
+            <fieldText>&lt;p&gt;Order complete! This vehicle has been purchased.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
     <screens>
         <name>screenCashSuccess</name>
         <label>Show success</label>
-        <locationX>645</locationX>
-        <locationY>623</locationY>
+        <locationX>646</locationX>
+        <locationY>815</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -288,7 +375,7 @@
         <name>showLoanCalculator</name>
         <label>Loan calculator</label>
         <locationX>247</locationX>
-        <locationY>318</locationY>
+        <locationY>510</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -348,7 +435,7 @@
         <name>showLoanForm</name>
         <label>Loan form</label>
         <locationX>60</locationX>
-        <locationY>318</locationY>
+        <locationY>510</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -407,8 +494,8 @@
     <screens>
         <name>showLoanSuccess</name>
         <label>Show loan success</label>
-        <locationX>258</locationX>
-        <locationY>629</locationY>
+        <locationX>252</locationX>
+        <locationY>822</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
@@ -429,7 +516,7 @@
         <name>showPaymentType</name>
         <label>Select payment type</label>
         <locationX>654</locationX>
-        <locationY>58</locationY>
+        <locationY>250</locationY>
         <allowBack>true</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>true</allowPause>
@@ -458,13 +545,19 @@
         <showFooter>true</showFooter>
         <showHeader>false</showHeader>
     </screens>
-    <startElementReference>getVehicle</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>242</locationY>
+        <connector>
+            <targetReference>getVehicle</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
     <subflows>
         <name>Get_Price</name>
         <label>Get Price</label>
         <locationX>417</locationX>
-        <locationY>50</locationY>
+        <locationY>242</locationY>
         <connector>
             <targetReference>showPaymentType</targetReference>
         </connector>
