@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <decisions>
+        <name>hasInvoices</name>
+        <label>Has Invoices</label>
+        <locationX>473</locationX>
+        <locationY>247</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yesHasInvoices</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>invoices</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>deleteInvoices</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+        <rules>
+            <name>noHasInvoices</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>invoices</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>updateVehicle</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>hasLoans</name>
+        <label>Has Loans</label>
+        <locationX>203</locationX>
+        <locationY>55</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>yesHasLoans</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>loans</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>deleteLoans</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+        <rules>
+            <name>noHasLoans</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>loans</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>getInvoices</targetReference>
+            </connector>
+            <label>No</label>
+        </rules>
+    </decisions>
     <interviewLabel>Reset Vehicle {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Reset Vehicle</label>
     <processMetadataValues>
@@ -16,12 +90,29 @@
     </processMetadataValues>
     <processType>Flow</processType>
     <recordDeletes>
-        <name>deleteLoans</name>
-        <label>Delete Loans</label>
-        <locationX>213</locationX>
-        <locationY>50</locationY>
+        <name>deleteInvoices</name>
+        <label>Delete Invoices</label>
+        <locationX>551</locationX>
+        <locationY>55</locationY>
         <connector>
             <targetReference>updateVehicle</targetReference>
+        </connector>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Invoice__c</object>
+    </recordDeletes>
+    <recordDeletes>
+        <name>deleteLoans</name>
+        <label>Delete Loans</label>
+        <locationX>293</locationX>
+        <locationY>231</locationY>
+        <connector>
+            <targetReference>getInvoices</targetReference>
         </connector>
         <filters>
             <field>Vehicle__c</field>
@@ -32,11 +123,51 @@
         </filters>
         <object>Loan__c</object>
     </recordDeletes>
+    <recordLookups>
+        <name>getInvoices</name>
+        <label>Get Invoices</label>
+        <locationX>385</locationX>
+        <locationY>51</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>hasInvoices</targetReference>
+        </connector>
+        <filters>
+            <field>Vehicle__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Invoice__c</object>
+        <outputReference>invoices</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
+    <recordLookups>
+        <name>getLoans</name>
+        <label>Get Loans</label>
+        <locationX>128</locationX>
+        <locationY>236</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>hasLoans</targetReference>
+        </connector>
+        <filters>
+            <field>Vehicle__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <object>Loan__c</object>
+        <outputReference>loans</outputReference>
+        <queriedFields>Id</queriedFields>
+    </recordLookups>
     <recordUpdates>
         <name>updateVehicle</name>
         <label>Update Vehicle</label>
-        <locationX>378</locationX>
-        <locationY>50</locationY>
+        <locationX>673</locationX>
+        <locationY>244</locationY>
         <connector>
             <targetReference>Complete</targetReference>
         </connector>
@@ -48,6 +179,12 @@
             </value>
         </filters>
         <inputAssignments>
+            <field>Battery__c</field>
+            <value>
+                <stringValue>75 kWh</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
             <field>Status__c</field>
             <value>
                 <stringValue>Evaluation</stringValue>
@@ -58,16 +195,43 @@
     <screens>
         <name>Complete</name>
         <label>Complete</label>
-        <locationX>547</locationX>
-        <locationY>50</locationY>
+        <locationX>762</locationX>
+        <locationY>49</locationY>
         <allowBack>false</allowBack>
         <allowFinish>true</allowFinish>
         <allowPause>false</allowPause>
+        <fields>
+            <name>resetText</name>
+            <fieldText>&lt;p&gt;This vehicle has been reset!&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+        </fields>
         <showFooter>true</showFooter>
         <showHeader>true</showHeader>
     </screens>
-    <startElementReference>deleteLoans</startElementReference>
+    <start>
+        <locationX>50</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>getLoans</targetReference>
+        </connector>
+    </start>
     <status>Active</status>
+    <variables>
+        <name>invoices</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Invoice__c</objectType>
+    </variables>
+    <variables>
+        <name>loans</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Loan__c</objectType>
+    </variables>
     <variables>
         <name>recordId</name>
         <dataType>String</dataType>
