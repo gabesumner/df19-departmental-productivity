@@ -98,7 +98,7 @@
             <targetReference>updateVehicle</targetReference>
         </connector>
         <filters>
-            <field>Id</field>
+            <field>Vehicle__c</field>
             <operator>EqualTo</operator>
             <value>
                 <elementReference>recordId</elementReference>
