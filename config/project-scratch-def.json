@@ -1,17 +1,21 @@
 {
-    "orgName": "solutions-departmental-apps",
-    "adminEmail": "shane@mailinator.com",
-    "edition": "Developer",
-    "features": ["EinsteinBuilderFree", "DevelopmentWave", "EinsteinAssistant"],
-    "settings": {
-        "orgPreferenceSettings": {
-            "networksEnabled": false,
-            "s1DesktopEnabled": true,
-            "pathAssistantsEnabled": true,
-            "s1EncryptedStoragePref2": false      
-        },
-        "mobileSettings": {
-            "enableLightningOnMobile": true
-        }
+  "orgName": "solutions-departmental-apps",
+  "adminEmail": "shane@mailinator.com",
+  "edition": "Developer",
+  "features": ["EinsteinBuilderFree", "DevelopmentWave", "EinsteinAssistant"],
+  "settings": {
+    "mobileSettings": {
+      "enableLightningOnMobile": true,
+      "enableS1EncryptedStoragePref2": false
+    },
+    "communitiesSettings": {
+      "enableNetworksEnabled": false
+    },
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "pathAssistantSettings": {
+      "pathAssistantEnabled": true
     }
+  }
 }
