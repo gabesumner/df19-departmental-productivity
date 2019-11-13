@@ -5,9 +5,15 @@ GitHub: https://github.com/DouglasCAyers/sfdc-reloadable-flow-component
 License: BSD 3-Clause License
 -->
 <design:component label="Flow - Reloadable">
-
-    <design:attribute label="Flow Name" name="flowName" description="Unique Name of the Flow to display." />
-
+  <design:attribute
+    label="Flow Name"
+    name="flowName"
+    description="Unique Name of the Flow to display."
+  />
+  <design:supportedFormFactors>
+    <design:supportedFormFactor type="Large" />
+    <design:supportedFormFactor type="Small" />
+  </design:supportedFormFactors>
 </design:component>
 <!--
 BSD 3-Clause License
